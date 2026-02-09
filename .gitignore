@@ -1,0 +1,13 @@
+```
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test directories
+tests/__pycache__/
+
+# Compressed files
+*.tar.gz
+```

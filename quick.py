@@ -20,12 +20,16 @@ def recursion_dir(dir, width):
         if os.path.isdir(path):  # 如果当前路径是一个目录
             recursion_dir(path, width + 4)  # 递归调用该函数，继续遍历子目录
 
-recursion_dir('.', 0)  # 从当前目录开始调用递归函数进行遍历
-name = '刘杰.tar.gz '  # 拼接压缩文件的名称，使用命令行参数
-# os.system是Python调用bash shell的函数
-print(name)  # 打印压缩文件的名称
-print(my_list)  # 打印存储符合条件文件路径的列表
-os.system('tar czf ' + name + " ".join(my_list))  # 调用系统命令进行文件压缩
-str_scp = 'scp ' + name + ' py11@8.155.27.170:~/day' + sys.argv[1]  # 拼接scp命令字符串
-os.system(str_scp)  # 调用系统命令进行文件传输
-print('提交成功')  # 打印提交成功的提示信息
+if __name__ == "__main__":
+    recursion_dir('.', 0)  # 从当前目录开始调用递归函数进行遍历
+    name = '刘杰.tar.gz '  # 拼接压缩文件的名称，使用命令行参数
+    # os.system是Python调用bash shell的函数
+    print(name)  # 打印压缩文件的名称
+    print(my_list)  # 打印存储符合条件文件路径的列表
+    os.system('tar czf ' + name + " ".join(my_list))  # 调用系统命令进行文件压缩
+    if len(sys.argv) > 1:
+        str_scp = 'scp ' + name + ' py11@8.155.27.170:~/day' + sys.argv[1]  # 拼接scp命令字符串
+        os.system(str_scp)  # 调用系统命令进行文件传输
+        print('提交成功')  # 打印提交成功的提示信息
+    else:
+        print('未提供命令行参数，跳过scp命令')
